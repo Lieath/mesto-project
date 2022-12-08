@@ -1,0 +1,18 @@
+.photo-card__like-button {
+    background-image: url(../../../images/like-button.svg);
+    background-color: #ffffff00;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border-style: hidden;
+    align-self: center;
+    width: 22px;
+    height: 19px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.photo-card__like-button:hover {
+    opacity: 0.5;
+    transition: .1s linear;
+}
