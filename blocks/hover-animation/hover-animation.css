@@ -1,4 +1,4 @@
 .hover-animation:hover {
-    background-color: #AAAAAA;
+    opacity: 0.6;
     transition: .1s linear;
 }
