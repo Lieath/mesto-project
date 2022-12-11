@@ -7,24 +7,24 @@
     <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
+    <header class="header">
+        <img src="./images/header-logo.svg" alt="Логотип проекта 'Место'." class="header__logo">
+    </header>
     <main class="content">
         <div class="popup">
             <div class="popup__container">
                 <button class="popup__close-button" type="button"></button>
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__form" name="edit-form">
-                        <input class="popup__input" type="text" name="name" placeholder="Имя">
-                        <input class="popup__input" type="text" name="bio" placeholder="О себе">
+                    <input class="popup__input" type="text" name="name" placeholder="Имя">
+                    <input class="popup__input" type="text" name="bio" placeholder="О себе">
                     <button class="popup__submit-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
-        <header class="header">
-            <img src="./images/header-logo.svg" alt="Логотип проекта "Место"" class="header__logo">
-        </header>
         <section class="profile">
             <div class="profile__container">
-                <img src="./images/profile-avatar.jpg" alt="Аватар пользователя" class="profile__avatar">
+                <img src="./images/profile-avatar.jpg" alt="Аватар пользователя." class="profile__avatar">
                 <div class="profile-info">
                     <h1 class="profile-info__username">Жак-Ив Кусто</h1>
                     <button class="profile__edit-button" type="button"></button>
@@ -35,51 +35,51 @@
         </section>
         <section class="photo-grid">
             <div class="photo-card">
-                <img src="./images/chukotka.jpg" alt="Бухта Провидения Чукотки" class="photo-card__image">
+                <img src="./images/chukotka.jpg" alt="Бухта Провидения Чукотки." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Чукотка</h2>
-                    <button type="button" class="photo-card__like-button"></button>
+                    <button type="button" class="photo-card__like-button photo-card__like-button_active"></button>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="./images/ingushetiya.jpg" alt="Джейрахский район Ингушетии" class="photo-card__image">
+                <img src="./images/ingushetiya.jpg" alt="Джейрахский район Ингушетии." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Ингушетия</h2>
                     <button type="button" class="photo-card__like-button"></button>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="./images/altai.jpg" alt="Телецкое озеро Алтая" class="photo-card__image">
+                <img src="./images/altai.jpg" alt="Телецкое озеро Алтая." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Алтай</h2>
                     <button type="button" class="photo-card__like-button"></button>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="./images/yakutiya.jpg" alt="Горы Якутии" class="photo-card__image">
+                <img src="./images/yakutiya.jpg" alt="Горы Якутии." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Якутия</h2>
                     <button type="button" class="photo-card__like-button"></button>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="./images/dagestan.jpg" alt="Сулакский каньон Дагестана" class="photo-card__image">
+                <img src="./images/dagestan.jpg" alt="Сулакский каньон Дагестана." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Дагестан</h2>
                     <button type="button" class="photo-card__like-button"></button>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="./images/kavkaz.jpg" alt="Кавказские горы" class="photo-card__image">
+                <img src="./images/kavkaz.jpg" alt="Кавказские горы." class="photo-card__image">
                 <div class="photo-card__container">
                     <h2 class="photo-card__title">Кавказ</h2>
                     <button type="button" class="photo-card__like-button"></button>
                 </div>
             </div>
         </section>
-        <footer class="footer">
-            <p class="footer__copyright">© 2022 Mesto Russia</p>
-        </footer>
     </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
 </body>
 </html>
