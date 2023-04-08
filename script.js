@@ -1,5 +1,9 @@
 const page = document.querySelector('.page');
 
+// Шаблон карточки
+
+const photoCardTemplate = page.querySelector('#photo-card-template').content;
+
 // Попап добавления карточки
 
 const popupAdd = page.querySelector('.popup.popup_add');
@@ -47,25 +51,18 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
-function openPhoto(popup) {
-    popup.classList.add('photo-view_opened');
-}
-
 // Функция закрытия попапа
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-function closePhoto(popup) {
-    popup.classList.remove('photo-view_opened');
-}
-
 // Функция показа карточки
 
 function showImage(imageLink, name) {
-    openPhoto(popupPhotoView);
+    openPopup(popupPhotoView);
     popupPhotoImage.src = imageLink;
+    popupPhotoImage.alt = name;
     popupPhotoTitle.textContent = name;
   };
 
@@ -75,11 +72,6 @@ addButton.addEventListener('click', () => {
 
     openPopup(popupAdd);
     
-    popupCardTitle.textContent = 'Новое место';
-    popupInputTitle.placeholder = 'Название';
-    popupInputLink.placeholder = 'Ссылка на картинку';
-    popupAddSubmitButton.textContent = 'Создать';
-    
     });
 
 // SUBMIT кнопки "Создать"
@@ -88,7 +80,7 @@ function submitCardForm(evt) {
     
     evt.preventDefault();
 
-    addNewCard(popupInputTitle.value, popupInputLink.value);
+    renderCard(popupInputTitle.value, popupInputLink.value);
     
     closePopup(popupAdd);
 
@@ -104,11 +96,6 @@ popupAddForm.addEventListener('submit', submitCardForm);
 editButton.addEventListener('click', () => {
 
     openPopup(popupProfile);
-
-    popupProfileTitle.textContent = 'Редактировать профиль';
-    popupInputName.placeholder = 'Имя';
-    popupInputBio.placeholder = 'О себе';
-    popupProfileSubmitButton.textContent = 'Сохранить';
 
     popupInputName.value = profileInfoUsername.textContent;
     popupInputBio.value = profileInfoBio.textContent;
@@ -134,18 +121,17 @@ popupProfileForm.addEventListener('submit', submitProfileForm);
 
 popupAddCloseButton.addEventListener('click', () => closePopup(popupAdd));
 popupProfileCloseButton.addEventListener('click', () => closePopup(popupProfile));
-popupPhotoCloseButton.addEventListener('click', () => closePhoto(popupPhotoView));
+popupPhotoCloseButton.addEventListener('click', () => closePopup(popupPhotoView));
 
 // Функция добавления новой карточки
 
-function addNewCard (cardTitle, cardLink, cardAlt = 'Описание') {
+function addNewCard (cardTitle, cardLink) {
 
-    const photoCardTemplate = page.querySelector('#photo-card-template').content;
     const photoCard = photoCardTemplate.cloneNode(true);
 
     photoCard.querySelector('.photo-card__title').textContent = cardTitle;
     photoCard.querySelector('.photo-card__image').src = cardLink;
-    photoCard.querySelector('.photo-card__image').alt = cardAlt;
+    photoCard.querySelector('.photo-card__image').alt = cardTitle;
 
     // Кнопка LIKE
 
@@ -163,13 +149,19 @@ function addNewCard (cardTitle, cardLink, cardAlt = 'Описание') {
 
     // Попап с фото
 
-    photoCard.querySelector('.photo-card__image').addEventListener('click', function(evt) {
+    photoCard.querySelector('.photo-card__image').addEventListener('click', (evt) => {
         showImage(evt.target.src, cardTitle);
     });
 
-    photoGrid.prepend(photoCard);
-
     return(photoCard);
+
+}
+
+// Добавление карточки в грид
+
+function renderCard(cardTitle, cardLink) {
+
+    photoGrid.prepend(addNewCard(cardTitle, cardLink));
 
 }
 
@@ -179,32 +171,26 @@ const initialCards = [
     {
       name: 'Чукотка',
       link: './images/chukotka.webp',
-      alt: 'Бухта Провидения Чукотки.'
     },
     {
       name: 'Ингушетия',
       link: './images/ingushetiya.webp',
-      alt: 'Джейрахский район Ингушетии.'
     },
     {
       name: 'Алтай',
       link: './images/altai.webp',
-      alt: 'Телецкое озеро Алтая.'
     },
     {
       name: 'Якутия',
       link: './images/yakutiya.webp',
-      alt: 'Горы Якутии.'
     },
     {
       name: 'Дагестан',
       link: './images/dagestan.webp',
-      alt: 'Сулакский каньон Дагестана.'
     },
     {
       name: 'Кавказ',
       link: './images/kavkaz.webp',
-      alt: 'Кавказские горы.'
     }
 ];
 
@@ -214,7 +200,7 @@ function setupInitialCards () {
 
     for (i = 0; i < initialCards.length; i++) {
 
-        addNewCard(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
+        renderCard(initialCards[i].name, initialCards[i].link);
 
     };
 

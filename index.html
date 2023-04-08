@@ -11,35 +11,6 @@
         <img src="./images/header-logo.svg" alt="Логотип проекта 'Место'." class="header__logo">
     </header>
     <main class="content">
-        <div class="popup popup_profile">
-            <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
-                <h3 class="popup__title"></h3>
-                <form class="popup__form" name="edit-form">
-                    <input class="popup__input" type="text" name="name" placeholder="">
-                    <input class="popup__input" type="text" name="bio" placeholder="">
-                    <button class="popup__submit-button" type="submit"></button>
-                </form>
-            </div>
-        </div>
-        <div class="popup popup_add">
-            <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
-                <h3 class="popup__title"></h3>
-                <form class="popup__form" name="edit-form">
-                    <input class="popup__input" type="text" name="title" placeholder="">
-                    <input class="popup__input" type="text" name="link" placeholder="">
-                    <button class="popup__submit-button" type="submit"></button>
-                </form>
-            </div>
-        </div>
-        <div class="photo-view">
-            <div class="photo-view__container">
-                <button class="photo-view__close-button" type="button"></button>
-                <img src="" class="photo-view__image">
-                <h3 class="photo-view__title"></h3>
-            </div>
-        </div>
         <section class="profile">
             <div class="profile__container">
                 <img src="./images/profile-avatar.webp" alt="Аватар пользователя." class="profile__avatar">
@@ -57,6 +28,35 @@
     <footer class="footer">
         <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
+    <div class="popup popup_profile">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <form class="popup__form" name="edit-form">
+                <input class="popup__input" type="text" name="name" placeholder="Имя">
+                <input class="popup__input" type="text" name="bio" placeholder="О себе">
+                <button class="popup__submit-button" type="submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_add">
+        <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <h3 class="popup__title">Новое место</h3>
+            <form class="popup__form" name="edit-form">
+                <input class="popup__input" type="text" name="title" placeholder="Название">
+                <input class="popup__input" type="text" name="link" placeholder="Ссылка на страницу">
+                <button class="popup__submit-button" type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup photo-view">
+        <div class="photo-view__container">
+            <button class="photo-view__close-button" type="button"></button>
+            <img src="" alt="" class="photo-view__image">
+            <h3 class="photo-view__title"></h3>
+        </div>
+    </div>
     <template id="photo-card-template">
     <div class="photo-card">
         <button type="button" class="photo-card__delete-button"></button>
