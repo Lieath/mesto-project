@@ -1,0 +1,50 @@
+.photo-view__close-button {
+    background-image: url('../../../images/close-icon.svg');
+    background-color: rgba(0, 0, 0, 0);
+    background-size: contain;
+    background-position: center;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    padding: 0;
+}
+
+@media screen and (max-width: 650px) {
+    .photo-view__close-button {
+        width: 26px;
+        height: 26px;
+        top: -35px;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    .photo-view__close-button {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .photo-view__close-button {
+        width: 22px;
+        height: 22px;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .photo-view__close-button {
+        width: 20px;
+        height: 20px;
+        right: 0;
+    }
+}
+
+.photo-view__close-button:hover {
+        opacity: 0.6;
+        transition: .1s linear;
+    }
