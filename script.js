@@ -212,7 +212,7 @@ const initialCards = [
 
 function setupInitialCards () {
 
-    for (i = 0; i <= initialCards.length; i++) {
+    for (i = 0; i < initialCards.length; i++) {
 
         addNewCard(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
 
