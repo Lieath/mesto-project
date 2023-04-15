@@ -12,19 +12,19 @@ const popup = page.querySelector('.popup');
 
 const popupAdd = page.querySelector('.popup.popup_add');
 const popupCardTitle = popupAdd.querySelector('.popup__title');
-const popupAddForm = popupAdd.querySelector('.popup__form');
-const popupInputTitle = popupAddForm.querySelector('.popup__input[name="title"]');
-const popupInputLink = popupAddForm.querySelector('.popup__input[name="link"]');
-const popupAddSubmitButton = popupAddForm.querySelector('.popup__submit-button');
+const popupAddForm = document.forms.addForm;
+const popupInputTitle = popupAddForm.title;
+const popupInputLink = popupAddForm.link;
+const popupAddSubmitButton = popupAdd.querySelector('.popup__submit-button');
 const popupAddCloseButton = popupAdd.querySelector('.popup__close-button');
 
 // Попап профиля
 
 const popupProfile = page.querySelector('.popup.popup_profile');
 const popupProfileTitle = popupProfile.querySelector('.popup__title');
-const popupProfileForm = popupProfile.querySelector('.popup__form');
-const popupInputName = popupProfileForm.querySelector('.popup__input[name="name"]');
-const popupInputBio = popupProfileForm.querySelector('.popup__input[name="bio"]');
+const popupProfileForm = document.forms.editForm;
+const popupInputName = popupProfileForm.name;
+const popupInputBio = popupProfileForm.bio;
 const popupProfileSubmitButton = popupProfileForm.querySelector('.popup__submit-button');
 const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
 
@@ -71,6 +71,7 @@ popupPhotoCloseButton.addEventListener('click', () => closePopup(popupPhotoView)
 
 function closePopupOverlay(evt) {
     if (evt.target.classList.contains('popup')) {
+
         closePopup(popupAdd);
         closePopup(popupProfile);
         closePopup(popupPhotoView);
@@ -105,8 +106,7 @@ function showImage(imageLink, name) {
 
 addButton.addEventListener('click', () => {
 
-    popupInputTitle.value = '';
-    popupInputLink.value = '';
+    popupAddForm.reset();
     
     openPopup(popupAdd);
     
