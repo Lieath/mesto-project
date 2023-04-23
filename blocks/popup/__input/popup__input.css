@@ -7,11 +7,16 @@
     line-height: 17px;
     font-weight: 400;
     padding: 0;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+.popup__input:invalid {
+    border-bottom: 1px solid red;
 }
 
 @media screen and (max-width: 525px) {
     .popup__input {
         width: 238px;
+        margin-bottom: 48px;
     }
 }

@@ -33,8 +33,31 @@
             <button class="popup__close-button" type="button"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
             <form class="popup__form" name="editForm">
-                <input class="popup__input" type="text" name="name" placeholder="Имя">
-                <input class="popup__input" type="text" name="bio" placeholder="О себе">
+            <div class="popup__input-container">
+                <input class="popup__input" 
+                id="name-input"
+                type="text" 
+                name="name" 
+                placeholder="Имя" 
+                minlength="2" maxlength="40" 
+                pattern="^[-?!,.а-яА-ЯёЁa-zA-Z\s]+$" 
+                data-error-message="Поле может содержать латинские буквы, кириллические буквы, знаки дефиса и пробелы." 
+                required>
+                <span class="name-input-error popup__input-error"></span>
+            </div>
+            <div class="popup__input-container">
+                <input class="popup__input" 
+                id="bio-input"
+                type="text" 
+                name="bio" 
+                placeholder="О себе" 
+                minlength="2" maxlength="200" 
+                pattern="^[-?!,.а-яА-ЯёЁa-zA-Z\s]+$" 
+                data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" 
+                required>
+                <span class="bio-input-error popup__input-error"></span>
+            </div>
+
                 <button class="popup__submit-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -43,9 +66,31 @@
         <div class="popup__container">
             <button class="popup__close-button" type="button"></button>
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form" name="addForm">
-                <input class="popup__input" type="text" name="title" placeholder="Название">
-                <input class="popup__input" type="text" name="link" placeholder="Ссылка на страницу">
+            <form class="popup__form" novalidate name="addForm">
+
+            <div class="popup__input-container">
+                <input class="popup__input" 
+                id="title-input"
+                name="title" 
+                type="text" 
+                placeholder="Название" 
+                minlength="2" maxlength="30" 
+                pattern="^[-?!,.а-яА-ЯёЁa-zA-Z\s]+$" 
+                data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" 
+                required>
+                <span class="title-input-error popup__input-error"></span>
+            </div>
+
+            <div class="popup__input-container">
+                <input class="popup__input" 
+                id="link-input"
+                name="link" 
+                type="url" 
+                placeholder="Ссылка на страницу" 
+                required>
+                <span class="link-input-error popup__input-error"></span>
+                </div>
+
                 <button class="popup__submit-button" type="submit">Создать</button>
             </form>
         </div>
@@ -67,6 +112,6 @@
         </div>
     </div>
 </template>
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
