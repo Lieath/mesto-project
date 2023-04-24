@@ -122,7 +122,6 @@ function showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__input-error_active');
 }
 
 // Скрыть ошибку
@@ -132,13 +131,11 @@ function hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     errorElement.textContent = '';
-    errorElement.classList.remove('popup__input-error_active');
 }
 
-// Функция проверки валидности инпутов
+// Функция показа ошибки инпута
 
-function isValid(formElement, inputElement) {
-
+function isInputValid(formElement, inputElement) {
     if (inputElement.validity.patternMismatch) {
         inputElement.setCustomValidity(inputElement.dataset.errorMessage);
     } else {
@@ -150,8 +147,13 @@ function isValid(formElement, inputElement) {
       } else {
         hideInputError(formElement, inputElement);
       }
+}
 
-      return inputElement.validity.valid;
+// Функция проверки валидности инпутов
+
+function isValid(inputElementOne, inputElementTwo) {
+
+    return inputElementOne.validity.valid && inputElementTwo.validity.valid;
 }
 
 // Изменение состояния кнопки отправки формы
@@ -169,14 +171,18 @@ function setSubmitButtonState(inputValidity, button) {
 // Слушатель инпутов окна добавления карточки
 
 popupAddForm.addEventListener('input', function(evt) {
-    const inputValidity = isValid(popupAddForm, evt.target.closest('.popup__input'));
+
+    const inputValidity = isValid(popupInputTitle, popupInputLink);
+    isInputValid(popupAddForm, evt.target);
     setSubmitButtonState(inputValidity, popupAddSubmitButton);
 });
 
 // Слушатель инпутов окна редактирования профиля
 
 popupProfileForm.addEventListener('input', function(evt) {
-    const inputValidity = isValid(popupProfileForm, evt.target.closest('.popup__input'));
+
+    const inputValidity = isValid(popupInputName, popupInputBio);
+    isInputValid(popupProfileForm, evt.target);
     setSubmitButtonState(inputValidity, popupProfileSubmitButton);
 });
 
