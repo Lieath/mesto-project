@@ -93,6 +93,22 @@ function closePopupEsc(evt) {
 
 document.addEventListener('keydown', closePopupEsc);
 
+// Показать ошибку
+
+function showInputError(formElement, inputElement, errorMessage) {
+    
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = errorMessage;
+}
+
+// Скрыть ошибку
+
+function hideInputError(formElement, inputElement) {
+
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = '';
+}
+
 // Функция показа карточки
 
 function showImage(imageLink, name) {
@@ -108,34 +124,26 @@ addButton.addEventListener('click', () => {
 
     popupAddForm.reset();
 
-    //const inputValidity = isValid(popupAddForm, popupInputLink);
-    //setSubmitButtonState(inputValidity, popupAddSubmitButton);
+    setSubmitButtonState(popupAddForm, popupAddSubmitButton);
+
+    const inputElements = Array.from(popupAddForm);
+
+    inputElements.forEach(function (inputElement) {
+        inputElement.classList.remove('popup__input_error-line');
+    });
+
+    /* inputElements.forEach(function (inputElement) {
+        hideInputError(popupAddForm, inputElement)
+    }); */
     
     openPopup(popupAdd);
     
     });
 
-// Показать ошибку
+// Функция проверки валидности инпута
 
-function showInputError(formElement, inputElement, errorMessage) {
-    
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+function isValid(formElement, inputElement) {
 
-    errorElement.textContent = errorMessage;
-}
-
-// Скрыть ошибку
-
-function hideInputError(formElement, inputElement) {
-
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-    errorElement.textContent = '';
-}
-
-// Функция показа ошибки инпута
-
-function isInputValid(formElement, inputElement) {
     if (inputElement.validity.patternMismatch) {
         inputElement.setCustomValidity(inputElement.dataset.errorMessage);
     } else {
@@ -144,27 +152,29 @@ function isInputValid(formElement, inputElement) {
 
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage);
+        inputElement.classList.add('popup__input_error-line');
       } else {
         hideInputError(formElement, inputElement);
+        inputElement.classList.remove('popup__input_error-line');
       }
+
+      return inputElement.validity.valid;
 }
 
-// Функция проверки валидности инпутов
+// Функция изменения состояния кнопки отправки формы
 
-function isValid(inputElementOne, inputElementTwo) {
+function setSubmitButtonState(formElement, buttonElement) {
 
-    return inputElementOne.validity.valid && inputElementTwo.validity.valid;
-}
+    const inputsValidity = Array.from(formElement).some(function (inputElement) {
+        return !inputElement.validity.valid;
+    });
 
-// Изменение состояния кнопки отправки формы
-
-function setSubmitButtonState(inputValidity, button) {
-    if (inputValidity === true) {
-        button.classList.remove('popup__submit-button_not-active');
-        button.removeAttribute('disabled');
+    if (inputsValidity === false) {
+        buttonElement.classList.remove('popup__submit-button_not-active');
+        buttonElement.removeAttribute('disabled');
     } else {
-        button.setAttribute('disabled', true);
-        button.classList.add('popup__submit-button_not-active');
+        buttonElement.setAttribute('disabled', true);
+        buttonElement.classList.add('popup__submit-button_not-active');
     }
 }
 
@@ -172,18 +182,16 @@ function setSubmitButtonState(inputValidity, button) {
 
 popupAddForm.addEventListener('input', function(evt) {
 
-    const inputValidity = isValid(popupInputTitle, popupInputLink);
-    isInputValid(popupAddForm, evt.target);
-    setSubmitButtonState(inputValidity, popupAddSubmitButton);
+    isValid(popupAddForm, evt.target);
+    setSubmitButtonState(popupAddForm, popupAddSubmitButton);
 });
 
 // Слушатель инпутов окна редактирования профиля
 
 popupProfileForm.addEventListener('input', function(evt) {
 
-    const inputValidity = isValid(popupInputName, popupInputBio);
-    isInputValid(popupProfileForm, evt.target);
-    setSubmitButtonState(inputValidity, popupProfileSubmitButton);
+    isValid(popupProfileForm, evt.target);
+    setSubmitButtonState(popupProfileForm, popupProfileSubmitButton);
 });
 
 // SUBMIT кнопки "Создать"
@@ -209,9 +217,6 @@ editButton.addEventListener('click', () => {
 
     popupInputName.value = profileInfoUsername.textContent;
     popupInputBio.value = profileInfoBio.textContent;
-
-    //const validity = isValid(popupProfileForm, popupInputBio);
-    //setSubmitButtonState(validity, popupProfileSubmitButton);
 
     openPopup(popupProfile);
 
