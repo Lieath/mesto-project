@@ -8,6 +8,10 @@ const photoCardTemplate = page.querySelector('#photo-card-template').content;
 
 const popup = page.querySelector('.popup');
 
+// Все тексты ошибок
+
+const spansCollection = document.getElementsByClassName('popup__input-error');
+
 // Попап добавления карточки
 
 const popupAdd = page.querySelector('.popup.popup_add');
@@ -132,9 +136,11 @@ addButton.addEventListener('click', () => {
         inputElement.classList.remove('popup__input_error-line');
     });
 
-    /* inputElements.forEach(function (inputElement) {
-        hideInputError(popupAddForm, inputElement)
-    }); */
+    // Скрыть текст ошибок валидации
+
+    Array.from(spansCollection).forEach(function (spanElement) {
+        spanElement.textContent = '';
+    });
     
     openPopup(popupAdd);
     
@@ -217,6 +223,10 @@ editButton.addEventListener('click', () => {
 
     popupInputName.value = profileInfoUsername.textContent;
     popupInputBio.value = profileInfoBio.textContent;
+
+    Array.from(spansCollection).forEach(function (spanElement) {
+        spanElement.textContent = '';
+    });
 
     openPopup(popupProfile);
 
