@@ -184,21 +184,33 @@ function setSubmitButtonState(formElement, buttonElement) {
     }
 }
 
-// Слушатель инпутов окна добавления карточки
+// Функция добавления слушателей всем полям формы
 
-popupAddForm.addEventListener('input', function(evt) {
+function setEventListeners(formElement) {
 
-    isValid(popupAddForm, evt.target);
-    setSubmitButtonState(popupAddForm, popupAddSubmitButton);
-});
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    const buttonElement = formElement.querySelector('.popup__submit-button');
 
-// Слушатель инпутов окна редактирования профиля
+    inputList.forEach((inputElement) => {
+        inputElement.addEventListener('input', () => {
+          isValid(formElement, inputElement);
+          setSubmitButtonState(formElement, buttonElement);
+        });
+      });
+    };
 
-popupProfileForm.addEventListener('input', function(evt) {
+// Функция добавления слушателей всем формам
 
-    isValid(popupProfileForm, evt.target);
-    setSubmitButtonState(popupProfileForm, popupProfileSubmitButton);
-});
+function enableValidation() {
+
+    const formList = Array.from(document.querySelectorAll('.popup__form'));
+
+    formList.forEach((formElement) => {
+        setEventListeners(formElement);
+      });
+
+
+};
 
 // SUBMIT кнопки "Создать"
 
@@ -331,3 +343,4 @@ function setupInitialCards () {
 }
 
 setupInitialCards();
+enableValidation();
